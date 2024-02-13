@@ -1,6 +1,7 @@
 package com.anjali.aurorahotel.model;
 
 import java.math.BigDecimal;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.*;
@@ -23,6 +24,8 @@ public class Room {
     private String roomType;
     private BigDecimal roomPrice;
     private boolean isBooked = false;
+    @Lob
+    private Blob photo;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<BookedRoom> bookings;
 
