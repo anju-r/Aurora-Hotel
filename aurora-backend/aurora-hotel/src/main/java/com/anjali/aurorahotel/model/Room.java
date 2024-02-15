@@ -15,7 +15,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
+
 
 public class Room {
     @Id
@@ -26,7 +26,7 @@ public class Room {
     private boolean isBooked = false;
     @Lob
     private Blob photo;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<BookedRoom> bookings;
 
     public Room() {
