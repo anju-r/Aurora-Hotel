@@ -51,7 +51,40 @@ const AddRoom = () => {
     }
   }
   return (
-    <div>AddRoom</div>
+    <>
+      <section className="container, mt-5 mb-5">
+        <div className="row justify-content-center">
+          <div className="col-md-8 col-lg-6">
+            <h2 className="mt-5 mb-2">Add New Room  </h2>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <label htmlFor="roomType" className="form-label">
+                  Room Type
+                </label>
+                <div></div>
+              </div>
+
+              <div className="mb-3">
+                <label htmlFor="roomPrice" className="form-label">
+                  Room Price
+                </label>
+                <input
+                  className="form-control"
+                  required
+                  id="roomPrice"
+                  name="roomPrice"
+                  value={newRoom.roomPrice}
+                  onChange={handleRoomInputChange}
+                />
+              </div>
+
+
+            </form>
+
+          </div>
+        </div>
+      </section>
+    </>
   )
 }
 
