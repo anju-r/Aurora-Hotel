@@ -96,8 +96,15 @@ const AddRoom = () => {
                   <img src={imagePreview}
                     alt="Preview room photo"
                     style={{ maxWidth: "400px", maxHeight: "400px" }}
-                    className="mb-3"
+                    className="mb-3"></img>
                 )}
+              </div>
+              <div className="d-grid d-md-flex mt-2">
+                <button className="btn btn-outline-primary ml-5">
+                  Save Room
+
+                </button>
+
               </div>
 
 
