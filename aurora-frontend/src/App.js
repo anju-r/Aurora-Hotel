@@ -1,25 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import "../node_modules/bootsrap/dist/css/bootsrap.min.css"
+//import "/node_modules/bootsrap/dist/js/bootsrap.min.js"
+import AddRoom from './components/room/AddRoom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AddRoom />
+    </>
   );
+
 }
 
 export default App;
