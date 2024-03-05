@@ -37,7 +37,7 @@ public class RoomController {
         return roomService.getAllRoomTypes();
     }
 
-    public ResponseEntity<List<RoomResponse>> getAllRooms(){
+    public ResponseEntity<List<RoomResponse>> getAllRooms() throws SQLException {
         List<Room> rooms =roomService.getAllRooms();
         List<RoomResponse> roomResponses =new ArrayList<>();
         for(Room room : rooms){
@@ -50,5 +50,8 @@ public class RoomController {
             }
         }
         return ResponseEntity.ok(roomResponses);
+    }
+
+    private RoomResponse getRoomResponse(Room room) {
     }
 }
