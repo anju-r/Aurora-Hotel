@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/aurora-backend.iml" filepath="$PROJECT_DIR$/.idea/aurora-backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aurora-hotel.main.iml" filepath="$PROJECT_DIR$/.idea/modules/aurora-hotel.main.iml" />
     </modules>
   </component>
 </project>
