@@ -1,5 +1,6 @@
 package com.anjali.aurorahotel.controller;
 
+import com.anjali.aurorahotel.exception.PhotoRetrievalException;
 import com.anjali.aurorahotel.model.BookedRoom;
 import com.anjali.aurorahotel.model.Room;
 import com.anjali.aurorahotel.response.BookingResponse;
@@ -41,6 +42,7 @@ public class RoomController {
     public List<String> getRoomTypes(){
         return roomService.getAllRoomTypes();
     }
+    @GetMapping("/all-rooms")
 
     public ResponseEntity<List<RoomResponse>> getAllRooms() throws SQLException {
         List<Room> rooms =roomService.getAllRooms();
