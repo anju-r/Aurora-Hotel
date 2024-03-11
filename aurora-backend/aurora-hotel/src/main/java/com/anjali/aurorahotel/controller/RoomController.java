@@ -1,6 +1,9 @@
 package com.anjali.aurorahotel.controller;
 
+import com.anjali.aurorahotel.model.BookedRoom;
 import com.anjali.aurorahotel.model.Room;
+import com.anjali.aurorahotel.response.BookingResponse;
+import com.anjali.aurorahotel.service.BookingService;
 import com.anjali.aurorahotel.service.IRoomService;
 import com.anjali.aurorahotel.service.RoomService;
 import com.anjali.aurorahotel.response.RoomResponse;
@@ -12,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +25,7 @@ import java.util.List;
 @RequestMapping("/rooms")
 public class RoomController {
     private final IRoomService roomService;
+    private final BookingService bookingService;
     @PostMapping("/add/newroom")
     public ResponseEntity<RoomResponse> addNewRoom(
             @RequestParam("photo")MultipartFile photo,
@@ -53,5 +58,27 @@ public class RoomController {
     }
 
     private RoomResponse getRoomResponse(Room room) {
+        List<BookedRoom> bookings = getAllBookingsByRoomId(room.getId());
+        List<BookingResponse> bookingInfo = bookings
+                .stream()
+                .map(booking -> new BookingResponse(booking.getBookingId(),
+                booking.getCheckInDate(),
+                booking.getCheckOutDate(), booking.getBookingConfirmationCode())).toList();
+        byte[] photoBytes = null;
+        Blob photoBlob = room.getPhoto();
+        if(photoBlob != null){
+            try{photoBytes = photoBlob.getBytes(1, (int) photoBlob.length());
+        } catch (SQLException e){
+                throw new PhotoRetrievalException("Error Retrieving Photo");
+            }
+
+            }
+        return new RoomResponse(room.getId(),
+                room.getRoomType(), room.getRoomPrice(),
+                room.isBooked(), photoBytes, bookingInfo);
+    }
+
+    private List<BookedRoom> getAllBookingsByRoomId(Long roomId) {
+        return bookingService.getAllBookingsByRoomId(roomId);
     }
 }
