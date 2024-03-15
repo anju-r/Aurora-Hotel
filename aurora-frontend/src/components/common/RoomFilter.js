@@ -20,7 +20,24 @@ const RoomFilter = ({ data, setFilteredData }) => {
 
 
     return (
-        <div>RoomFilter</div>
+        <div className="input-group mb-3">
+            <span className="input-group-text" id="room-type-filter">
+                Filter room by type
+            </span>
+            <select className="form-select" value={filter} onChange={handleSelectChange}>
+                <option value={""}> select a room type to filter....</option>
+                {roomTypes.map((type, index) => (
+                    <option key={index} value={String(type)}>
+                        {type}
+                    </option>
+                ))}
+
+            </select>
+            <button className="btn btn-hotel" type="button" onClick={clearFilter}>
+                Clear Filter
+            </button>
+
+        </div>
     )
 }
 
