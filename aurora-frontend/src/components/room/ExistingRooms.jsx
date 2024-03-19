@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { Col } from 'react-bootstrap'
+import RoomFilter from '../common/RoomFilter'
 
 const ExistingRooms = () => {
     const [rooms, setRooms] = useState([])
@@ -47,7 +49,48 @@ const ExistingRooms = () => {
     const currentRooms = filteredRooms.slice(indexOfFirstRoom, indexOfLastRoom)
 
     return (
-        <div>ExistingRooms</div>
+        <>
+            {isLoading ? (
+                <p>Loading existing rooms</p>
+            ) : (
+                <>
+                    <section className="mt-5 mb-5 container">
+                        <div className="d-flex justify-content-center mb-3 mt-5">
+                            <h2>Existing Rooms</h2>
+                        </div>
+                        <Col md={6} className="mb-3 mb-md-0">
+                            <RoomFilter data={rooms} setFilteredData={setFilteredRooms}></RoomFilter>
+                        </Col>
+
+                        <table className="table table-bordered table-hover">
+                            <thead>
+                                <tr className="text-center">
+                                    <th>ID</th>
+                                    <th>Room Type</th>
+                                    <th>Room Price</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+                                {currentRooms.map((room) => (
+                                    <tr key={room.id} className="text-center">
+                                        <td>{room.id}</td>
+                                        <td>{room.roomType}</td>
+                                        <td>{room.roomPrice}</td>
+                                        <td>
+                                            <button>View / Edit</button>
+                                            <button>Delete</button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </section>
+                </>
+            )}
+        </>
     )
 }
 
