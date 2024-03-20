@@ -60,12 +60,13 @@ const RoomTypeSelector = (handleRoomInputChange, newRoom) => {
                             <button className="btn btn-hotel" type="button" onClick={handleAddNewRoomType}>
                                 Add
                             </button>
-                        )}
                         </div>
-                    )
-                    }
-                    < div > RoomTypeSelector</div >
-                    )
+                    )}
+                </div>
+            )
+        }
+
+    )
 }
 
-                    export default RoomTypeSelector
+export default RoomTypeSelector
