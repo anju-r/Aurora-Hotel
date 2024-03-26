@@ -32,6 +32,33 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                     </ul>
+                    <ul className="d-flex navbar-nav">
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to={"/find-booking"}>Find My Booking
+                            </NavLink>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <a></a>
+
+                            <ul>
+                                <li>
+                                    <Link to={"/login"} className="dropdown-item">
+                                        Login
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to={"/profile"} className="dropdown-item">
+                                        Profile
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to={"/logout"} className="dropdown-item">
+                                        Logout
+                                    </Link>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
