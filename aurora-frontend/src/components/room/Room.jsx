@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { getAllRooms } from '../utils/ApiFunctions'
 import RoomCard from './RoomCard'
+import { Col, Container, Row } from 'react-bootstrap'
+import RoomPaginator from '../common/RoomPaginator'
+import RoomFilter from '../common/RoomFilter'
 
 const Room = () => {
     cosnt[DataTransfer, setData] = useState([])
@@ -41,7 +44,28 @@ const Room = () => {
             .map((room) => <RoomCard key={room.id} room={room} />)
     }
     return (
-        <div>Room</div>
+        <Container>
+            <Row>
+                <Col md={6} className="mb-3 mb-md-0">
+                    <RoomFilter data={data} setFilteredData={setFilteredData} />
+                </Col>
+
+                <Col md={6} className="d-flex align-items-center justify content-end">
+                    <RoomPaginator
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={handlePageChange}
+                    /></Col>
+            </Row>
+            <Row>
+                <Col md={6} className="d-flex align-items-center justify content-end">
+                    <RoomPaginator
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={handlePageChange}
+                    /></Col>
+            </Row>
+        </Container>
     )
 }
 
