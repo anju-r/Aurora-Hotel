@@ -57,6 +57,7 @@ const Room = () => {
                         onPageChange={handlePageChange}
                     /></Col>
             </Row>
+            <Row>{renderRooms()}</Row>
             <Row>
                 <Col md={6} className="d-flex align-items-center justify content-end">
                     <RoomPaginator
