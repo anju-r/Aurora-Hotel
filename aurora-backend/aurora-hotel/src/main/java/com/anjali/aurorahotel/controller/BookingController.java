@@ -63,7 +63,7 @@ public class BookingController {
         bookingService.cancelBooking(bookingId);
     }
     private BookingResponse getBookingResponse(BookedRoom booking) {
-        Room theRoom = roomService.getRoomPhotoByRoomId(booking.getRoom().getId()).get();
+        Room theRoom = roomService.getRoomById(booking.getRoom().getId()).get();
         RoomResponse room = new RoomResponse(
                 theRoom.getId(),
                 theRoom.getRoomType(),
