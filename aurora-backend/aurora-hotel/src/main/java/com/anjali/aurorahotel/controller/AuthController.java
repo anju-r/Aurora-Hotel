@@ -47,5 +47,21 @@ public class AuthController {
         }
     }
 
-  
+    @PostMapping("/login")
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest request){
+        Authentication authentication =
+                authenticationManager
+                        .authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = jwtUtils.generateJwtTokenForUser(authentication);
+        HotelUserDetails userDetails = (HotelUserDetails) authentication.getPrincipal();
+        List<String> roles = userDetails.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority).toList();
+        return ResponseEntity.ok(new JwtResponse(
+                userDetails.getId(),
+                userDetails.getEmail(),
+                jwt,
+                roles));
+    }
 }
