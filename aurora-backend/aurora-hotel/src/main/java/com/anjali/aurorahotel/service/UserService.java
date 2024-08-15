@@ -42,5 +42,19 @@ public class UserService implements IUserService {
         return userRepository.findAll();
     }
 
-    
+    @Transactional
+    @Override
+    public void deleteUser(String email) {
+        User theUser = getUser(email);
+        if (theUser != null){
+            userRepository.deleteByEmail(email);
+        }
+
+    }
+
+    @Override
+    public User getUser(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
 }
